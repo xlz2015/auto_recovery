@@ -137,10 +137,12 @@ def main_handler(event, context):
 	# 命令执行参数
 	work_directory = "/home/user00"
 	user = "user00"
+
+	# 执行的具体脚本命令
 	run_command = '''nohup /home/user00/my_program.sh >/home/user00/my_test.log 2>&1 &'''
 	run_command_base = base64.b64encode(run_command.encode('utf-8'))
 
-	# 判断服务器是否在 RUNNINg 状态
+	# 判断服务器是否在 RUNNING 状态
 	status_get = get_cvm_status(timestamp, date, secretid, secretkey, region, insid)
 	status = json.loads(status_get)["Response"]["InstanceSet"][0]["InstanceState"]
 	print(status)
